@@ -16,7 +16,7 @@ function setup() {
 	socket = io.connect('http://localhost:3000');
 	//socket.on('mouse', newDrawing);
 
-	shape = new Shape(random(width), random(height), 128, 3);
+	shape = new Shape(random(width), random(height), 0, 3);
 
 	var data = {
 		x: shape.pos.x,
@@ -34,7 +34,7 @@ function setup() {
 	);
 
 
-	for (var i = 0; i < 10; i++) {
+	for (var i = 0; i < 50; i++) {
 		var x = random(-width, width);
 		var y = random(-height, height);
 		exps[i] = new Exp(x, y, 16);

@@ -14,6 +14,7 @@ function Shape(x, y, exp, sides) {
 	this.eats = function(exp) {
 		var d = p5.Vector.dist(this.pos, exp.pos)
 		if (d < 64 + 16) {
+			this.levelup(exp);
 			this.exp += exp.size
 			//this.r = sqrt(sum / PI);
 			return true
@@ -22,18 +23,10 @@ function Shape(x, y, exp, sides) {
 		}
 	}
 
-	this.levelup = function() {
-		if (exp >= 180) {
-			this.sides = 5;
-		}
-		if (exp >= 220) {
-			this.sides = 7;
-		}
-		if (exp >= 260) {
-			this.sides = 9;
-		}
-		if (exp >= 300) {
-			this.sides = 15;
+	this.levelup = function(exp) {
+		if ((this.exp + exp.size) >= 100) {
+			this.sides += 2;
+			this.exp = 0;
 		}
 	}
 
@@ -44,13 +37,11 @@ function Shape(x, y, exp, sides) {
 	}
 
 	this.show = function() {
-		if (this.sides == 3) {
-			push();
-			fill(255);
-			polygon(this.pos.x, this.pos.y, 64, this.sides);
-			//rotate(tan(mouseX/mouseY));
-			pop();
-		}
+		push();
+		fill(255);
+		polygon(this.pos.x, this.pos.y, 64, this.sides);
+		//rotate(tan(mouseX/mouseY));
+		pop();
 	}
 
 	function polygon(x, y, radius, npoints) {
