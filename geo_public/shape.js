@@ -24,8 +24,8 @@ function Shape(x, y, exp, sides) {
 	}
 
 	this.levelup = function(exp) {
-		if ((this.exp + exp.size) >= 100) {
-			this.sides += 2;
+		if (((this.exp + exp.size) >= 100) && (this.sides > 3)) {
+			this.sides -= 2;
 			this.exp = 0;
 		}
 	}

@@ -16,7 +16,7 @@ function setup() {
 	socket = io.connect('http://localhost:3000');
 	//socket.on('mouse', newDrawing);
 
-	shape = new Shape(random(width), random(height), 0, 3);
+	shape = new Shape(random(width), random(height), 0, 9);
 
 	var data = {
 		x: shape.pos.x,
