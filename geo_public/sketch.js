@@ -16,11 +16,12 @@ function setup() {
 	socket = io.connect('http://localhost:3000');
 	//socket.on('mouse', newDrawing);
 
-	shape = new Shape(random(width), random(height), 0, 9);
+	shape = new Shape(random(width), random(height), 100, 0, 9);
 
 	var data = {
 		x: shape.pos.x,
 		y: shape.pos.y,
+		health: shape.health,
 		exp: shape.exp,
 		sides: shape.sides
 	}
@@ -79,12 +80,12 @@ function draw() {
 		if (shape.eats(exps[k])) { // if exp is eaten, spawns new exp at random location and draws it
 			//exps.splice(k, 1);
 			exps[k] = new Exp(random(-width, width), random(-height, height), 16);
-			fill(50, 205, 50);
+			fill(136, 255, 137);
 		  ellipse(exps[k].pos.x, exps[k].pos.y, 16, 16);
 			//exps[k].show();
 		}
 		else {
-			fill(50, 205, 50);
+			fill(136, 255, 137);
 		  ellipse(exps[k].pos.x, exps[k].pos.y, 16, 16);
 			//exps[k].show(); // if exp is not eaten, draws exp
 		}
@@ -97,6 +98,7 @@ function draw() {
 	var data = {
 		x: shape.pos.x,
 		y: shape.pos.y,
+		health: shape.health,
 		exp: shape.exp,
 		sides: shape.sides,
 		//updShape: [shape.pos.x, shape.pos.y, shape.exp, shape.sides]

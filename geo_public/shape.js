@@ -1,5 +1,8 @@
-function Shape(x, y, exp, sides) {
+function Shape(x, y, health, exp, sides) {
+	var maxHealth = 100;
+
 	this.pos = createVector(x, y);
+	this.health = health;
 	this.exp = exp;
 	this.sides = sides;
 	this.vel = createVector(0, 0);
@@ -15,7 +18,8 @@ function Shape(x, y, exp, sides) {
 		var d = p5.Vector.dist(this.pos, exp.pos)
 		if (d < 64 + 16) {
 			this.levelup(exp);
-			this.exp += exp.size
+			this.exp += exp.size;
+			this.health += exp.size;
 			//this.r = sqrt(sum / PI);
 			return true
 		} else {
@@ -25,13 +29,22 @@ function Shape(x, y, exp, sides) {
 
 	this.levelup = function(exp) {
 		if (((this.exp + exp.size) >= 100) && (this.sides > 3)) {
+			maxHealth += 40;
 			this.sides -= 2;
 			this.exp = 0;
+			return true;
+		}
+		else {
+			return false
 		}
 	}
 
 
 	this.constrain = function() {
+		// if (this.levelup) {
+		// 	maxHealth += 40;
+		// }
+		shape.health = constrain(shape.health, 1, maxHealth);
 		shape.pos.x = constrain(shape.pos.x, -width, width);
 		shape.pos.y = constrain(shape.pos.y, -height, height);
 	}

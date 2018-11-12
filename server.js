@@ -39,8 +39,8 @@ function newConnection(socket){
 
   socket.on('start_shape',
     function(data) {
-      console.log(socket.id + '' + data.x + '' + data.y + '' + data.exp + '' + data.sides);
-      var shape = new Shape(socket.id, data.x, data.y, data.exp, data.sides);
+      console.log(socket.id + ' ' + data.x + ' ' + data.y + ' ' + data.health + ' ' + data.exp + ' ' + data.sides);
+      var shape = new Shape(socket.id, data.x, data.y, data.health, data.exp, data.sides);
       shapes.push(shape);
     });
 
@@ -57,6 +57,7 @@ function newConnection(socket){
 
         shape.x = data.x;
         shape.y = data.y;
+        shape.health = data.health;
         shape.exp = data.exp;
         shape.sides = data.sides;
 
