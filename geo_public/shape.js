@@ -38,9 +38,19 @@ function Shape(x, y, exp, sides) {
 
 	this.show = function() {
 		push();
+		// var diffX = this.pos.x - mouseX;
+		// var diffY = this.pos.y - mouseY;
+		// var diff = diffX/diffY;
+		// var arct = atan(diff);
+		// if ((diffY > 0) && (diffX > 0)) {
+		// 	arct += PI;
+		// }
+		// else if ((diffY < 0) && (diffX > 0)) {
+		// 	arct -= PI;
+		// }
+		// rotate(arct, this.pos);
 		fill(255);
 		polygon(this.pos.x, this.pos.y, 64, this.sides);
-		//rotate(tan(mouseX/mouseY));
 		pop();
 	}
 

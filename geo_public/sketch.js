@@ -65,18 +65,21 @@ function draw() {
 			pop();
 		}
 	}
-
+	//setInterval(function() {
 	if (mouseIsPressed) {
 		var bulletVel = createVector(mouseX, mouseY);
 		var projectile = new Projectile(shape.pos.x, shape.pos.y, bulletVel);
 		projectiles.push(projectile);
+		//}}, 330);
 	}
 
-	for (var k = exps.length-1; k >= 0; k--) {
+
+
+	for (var k = 0; k < exps.length; k++) {
 		if (shape.eats(exps[k])) { // if exp is eaten, spawns new exp at random location and draws it
-			exps.splice(k, 1);
+			//exps.splice(k, 1);
 			exps[k] = new Exp(random(-width, width), random(-height, height), 16);
-			fill(22, 100, 8);
+			fill(50, 205, 50);
 		  ellipse(exps[k].pos.x, exps[k].pos.y, 16, 16);
 			//exps[k].show();
 		}
@@ -95,17 +98,20 @@ function draw() {
 		x: shape.pos.x,
 		y: shape.pos.y,
 		exp: shape.exp,
-		sides: shape.sides
+		sides: shape.sides,
+		//updShape: [shape.pos.x, shape.pos.y, shape.exp, shape.sides]
+		//updProjectiles: projectiles,
+		//updExps: exps
 	}
 
 
 	for (var j = 0; j < projectiles.length; j++) {
-		fill(100, 0, 0);
-		ellipse(projectiles[j].posit.x, projectiles[j].posit.y, 32, 32); // draws all projectiles
+		fill(255, 255, 0);
+		polygon(projectiles[j].posit.x, projectiles[j].posit.y, 16, 3); // draws all projectiles
 		projectiles[j].tick(); // updates all projectiles
 	}
 
-	socket.emit('update_shapes', data);
+	socket.emit('update', data);
 	//socket.emit('update_projectiles', projectiles);
 
 	// var expUpd = {

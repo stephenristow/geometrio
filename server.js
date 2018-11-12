@@ -44,14 +44,7 @@ function newConnection(socket){
       shapes.push(shape);
     });
 
-  // socket.on('start_exp',
-  //   function(expData) {
-  //     //console.log(socket.id + '' + data.x + '' + data.y + '' + data.exp + '' + data.sides);
-  //     var exp = new Exp(expData.expX, expData.expY, expData.expSize);
-  //     exps.push(exp);
-  //   });
-
-  socket.on('update_shapes',
+  socket.on('update',
       function(data) {
         //console.log(socket.id + '' + data.x + '' + data.y + '' + data.r);
 
@@ -66,11 +59,9 @@ function newConnection(socket){
         shape.y = data.y;
         shape.exp = data.exp;
         shape.sides = data.sides;
-      });
 
-    socket.on('update_projectiles',
-        function(data) {
-          //console.log(socket.id + '' + data.x + '' + data.y + '' + data.r);
-          projectiles = data;
+        //projectiles = data.updProjectiles;
+
+        //exps = data.updExps;
       });
 }
